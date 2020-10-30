@@ -1,4 +1,3 @@
-
 // Setup variables
 var lastSwitch = localStorage.getItem('lastSwitch')
 var lastTimeStamp = localStorage.getItem('lastTimeStamp')
