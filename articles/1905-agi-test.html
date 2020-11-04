@@ -1,0 +1,101 @@
+<html lang="en-US">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="theme-color" content="#ffffff" /> <title>ER/RV - AI as a Complexity Interface</title>
+      <meta name="description" content="A blog on people, machines and learning"/>
+      <link rel="stylesheet" href="../css/normalize.css">
+      <link rel="stylesheet" href="../css/terminal.css">
+      <link id="darkSheet" rel="stylesheet" href="../css/dark.css">
+   </head>
+   <body>
+    <div class="container">
+        <h1>An AGI test</h1>
+        <div class="terminal-nav">
+           <nav class="terminal-menu">
+              <ul>
+                 <li><a href="../index.html">Home</a></li>
+                 <li></li><a id="ligthSwitch" onclick="switchLigth()">ligthSwitch</a></li>
+              </ul>
+           </nav>
+        </div>
+     </div>
+       <div class="container">
+            <h4 style="font-style: italic;">May 25, 2019</h4>
+            <p>AGI stands for <strong>Artificial General Intelligence</strong>. The expression was coined by Shane Legg, long before his days as Deepmind co-founder, upon <a href="http://goertzel.org/who-coined-the-term-agi/" target="\_blank">an open request</a> of the Singularity fanboy Ben Goertzel. It loosely refers to a machine that can perform any intellectual task <a href="https://en.wikipedia.org/wiki/Artificial_general_intelligence" target="\_blank">above human abilities</a>. These days, the debate about the “expect time of arrival” of AGI is influencing research priorities and directions in business, academia and elsewhere. While many people believe that AGI will be real in decades, some talk about centuries and others believe that we have no ground for any reliable estimation. Reflecting on it, I decided to do an impromptu evaluation of its likelihood to be created in the next few decades. The result of this is a take-home test to judge this yourself. To start with, stop reading and note down the first five intellectual tasks that you perform. Once you are done, read below the tasks I noted down and how I evaluated the likelihood that AGI would perform them well anytime soon.</p>
+
+            <figure>
+               <img alt="AGI writing maths at the chalkboard" style="max-width: 100%" src="../img/take-home-agi-test_1.jpg" />
+               <figcaption style="text-align: center;">AGI doing maths with a chalkboard. Note that a) computers can already do this kind of math, b) they really do not need chalkboards and c) they are not AGI.</figcaption>
+            </figure>
+            <br>
+
+            <p>Done? Amazing. Here are the five intellectual tasks that I have performed:</p>
+            <ol>
+            <li>Asking myself how to identify if I am doing an intellectual task</li>
+            <li>Hearing a cat coughing and assessing if he is alright</li>
+            <li>Watching the cat staring outside the window and wondering what he might be starting at</li>
+            <li>Asking myself why I am so fascinated by feline behaviour</li>
+            <li>Noticing that I misspelt “coughing” and starting to type the word on Google to find the right spelling, and, upon reading that the first suggested search referred to “coughing up blood”, confirming myself to have found the correct spelling</li>
+            </ol>
+
+            <p>The next stage of the game consists of assessing how much research progress has been recently achieved in any of the shortlisted tasks and the perspective of incoming progress. Let the fun being!</p>
+
+            <h4 id="asking-myself-how-to-identify-if-i-am-doing-an-intellectual-task"><strong>Asking myself how to identify if I am doing an intellectual task</strong></h4>
+            <p>We do not really need a machine for this task: a dictionary would suffice.
+            Can a machine look up “intellectual task” in a dictionary and load the resulting definition in memory? Totally.
+            Dictionaries were created by humans starting in <a href="https://en.wikipedia.org/wiki/Dictionary#History" target="\_blank">2300 BCE</a> so it is pretty handy that a machine can just go and consult a human-made one.
+            But could a machine create a dictionary and dynamically defines the concepts that it interacts with? Much trickier. Hence, let me make this simple: could a machine, after obtaining the definition of “intellectual task”, compare this to the actions it is taking to distinguish if any of these is an intellectual task? Unambiguously no. Is there research progressing in this task? Not that I am aware of.</p>
+
+            <p><em>A machine performing it in decades? Unlikely.</em></p>
+
+            <h4 id="hearing-a-cat-coughing-and-assessing-if-he-was-alright"><strong>Hearing a cat coughing and assessing if he was alright</strong></h4>
+            <p>Machine learning for medical diagnoses is achieving <a href="https://medium.com/health-ai/google-deepmind-might-have-just-solved-the-black-box-problem-in-medical-ai-3ed8bc21f636" target="\_blank">stunning progress</a> at an accelerating speed. Although there is still much <a href="https://spectrum.ieee.org/biomedical/diagnostics/how-ibm-watson-overpromised-and-underdelivered-on-ai-health-care" target="\_blank">scepticism</a> about its actual ability to be applied and used by practitioners. Many of us, including myself, would be tempted to forecast that we could witness a machine doing this within our lifetime. In addition, my evaluation of the cat’s health was probably uninformed and wrong. While there could be twists and details to further consider, let me avoid being pedantic: this one task passes.</p>
+
+            <p><em>A machine performing it in decades? Likely.</em></p>
+
+            <h4 id="watching-the-cat-staring-outside-the-window-and-wondering-what-he-might-be-starting-at"><strong>Watching the cat staring outside the window and wondering what he might be starting at</strong></h4>
+            <p>Any computer vision fellows online? Now that the glorious days of ImageNet are gone, how about building a massive dataset of picture pairs with a subject staring at something and the zoom of what that subject is looking at? I would love to see the results. My bet is that systems would perform poorly on such a task, even if deep learning enthusiasts think that any image related challenge is easy for neural networks.</p>
+
+            <p><em>A machine performing it in decades? In doubt.</em></p>
+
+            <h4 id="asking-myself-why-i-am-so-fascinated-by-feline-behaviour"><strong>Asking myself why I am so fascinated by feline behaviour</strong></h4>
+            <p>Everyone that ever took a Statistics class is familiar with the mantra <em>“Correlation does not imply causation”</em>.
+            However, the same people would be surprised to hear that Deep Learning (i.e. Neural Networks) is based on exploiting correlations at a massive scale. While some fathers of the field believe that Neural Networks will eventually perform <a href="https://syncedreview.com/2019/05/10/google-i-o-2019-geoffrey-hinton-says-machines-can-do-anything-humans-can/" target="\_blank">anything that human brains can do</a>, others suggest that proper artificial intelligence needs to perform causal reasoning and that <a href="https://www.technologyreview.com/s/612434/one-of-the-fathers-of-ai-is-worried-about-its-future/" target="\_blank">current systems are far from being able to</a>. All in all, not many promising indications that current technologies can meaningfully answer any <em>why</em> question. However, research in the area is ramping up. I encourage giving a read to Judea’s Peal <a href="https://blog.fastforwardlabs.com/newsletters/2019-02-28-public.html" target="\_blank">The Book of Why</a>. His book suggests that research is flourishing in the area, but we are very far from human-free machines that can reason causally.</p>
+
+            <p><em>A machine performing it in decades? Unlikely.</em></p>
+
+            <h4 id="noticing-that-i-misspelt-coughing-and-starting-to-type-the-word-on-google-to-find-the-right-spelling-and-upon-noticing-that-the-first-suggested-search-referred-to-coughing-up-blood-confirming-myself-to-have-found-the-correct-spelling"><strong>Noticing that I misspelt “coughing” and starting to type the word on Google to find the right spelling, and, upon noticing that the first suggested search referred to “coughing up blood”, confirming myself to have found the correct spelling</strong></h4>
+            <p>Natural language processing is another very exciting area of artificial intelligence that is progressing rather fast. If set up for such a task (a very important if) a machine would likely be able to do this soon, if not today.</p>
+
+            <p><em>A machine performing it in decades? Likely … with a caveat, an important and concluding one.</em></p>
+
+            <p>When I myself started this experiment I was quit bullishly thinking that most of the tasks would be out of reach for present or soon to come computers. I was surprised by the resulting tie: two likely, one doubt and two unlikely. In some way, this made me revisit my confirmation bias, coming from the daily cries around me on how powerful artificial intelligence is and will be. These many investigated claims probably induced me to forget that these technologies are being successfully applied for a significant subset of intellectual tasks.
+            However, the big caveat that stands out for me is that the progress in all the tasks is the fruit of very focused applications that are being thought through, designed, developed and deployed by large teams of humans. Believing that this would somehow change and that any technology would autonomously and wilfully start executing all these tasks together is nothing more than a belief.</p>
+
+            <p>I am very curious to try applying the same test to other tasks and if you have done so while reading this post, please do share your results below. I really hope that one of you was asking her or himself how to solve all problems of humanity and if eliminating all humans was a good option to solve the problem. If so, I would love to read how you speculated a machine would soon carry out this intellectual tasks and finish us all.</p>
+
+      </div>
+   </body>
+
+   <footer>
+      <script src="../js/main.js"></script> 
+   </footer>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
