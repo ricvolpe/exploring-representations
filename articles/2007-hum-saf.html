@@ -1,0 +1,142 @@
+<html lang="en-US">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="theme-color" content="#ffffff" /> <title>ER/RV - AI as a Complexity Interface</title>
+      <meta name="description" content="A blog on people, machines and learning"/>
+      <link rel="stylesheet" href="../css/normalize.css">
+      <link rel="stylesheet" href="../css/terminal.css">
+      <link id="darkSheet" rel="stylesheet" href="../css/dark.css">
+   </head>
+   <body>
+    <div class="container">
+        <h1>Research ideas to study humans with AI Safety in mind</h1>
+        <div class="terminal-nav">
+           <nav class="terminal-menu">
+              <ul>
+                 <li><a href="../index.html">Home</a></li>
+                 <li></li><a id="ligthSwitch" onclick="switchLigth()">ligthSwitch</a></li>
+              </ul>
+           </nav>
+        </div>
+     </div>
+       <div class="container">
+            <h4 style="font-style: italic;">July 3, 2020</h4>
+            <p><em>Crossposted from the <a href="https://www.lesswrong.com/posts/nqTkfrnE4CkbMtmHE/research-ideas-to-study-humans-with-ai-safety-in-mind">LessWrong Forum</a>. May contain more technical and AI Safety jargon than usual.</em></p>
+            <h2 id="premise">Premise</h2>
+
+            <p>Recently I spent some time thinking about ways in which studying the human side of human-machine systems would be beneficial to build aligned AIs. I discussed these ideas informally and people seemed interested and wanted to know more. Thus, I decided to write a list of research directions for studying humans that could help solve the alignment problem.</p>
+
+            <p>The list is non-exhaustive. Also, the intention behind it is not to argue that these research directions are more important than any other but rather to suggest directions to someone with a related background or personal fit in studying humans. There is also a lot of valuable work in AI Strategy that involves studying humans, which I am not familiar with. I wrote this list mostly with Technical AI Safety in mind.</p>
+
+            <h2 id="human-ai-research-fields">Human-AI Research Fields</h2>
+
+            <p>Before diving into my suggestions for studying humans with AI Safety in mind, I want to mention some less well-known research fields that study the interactions between human and AI systems in different ways, since I reference some of these below. Leaving aside the usual suspects of psychology, cognitive science and neuroscience, other interesting research areas I came across are</p>
+
+            <h3 id="cybernetics">Cybernetics</h3>
+
+            <p>A “transdisciplinary” approach <a href="https://en.wikipedia.org/wiki/Cybernetics:_Or_Control_and_Communication_in_the_Animal_and_the_Machine">defined</a> by Norbert Wiener in 1948 as “the scientific study of control and communication in the animal and the machine”. It is currently mostly used as a historical reference and a <a href="https://books.google.co.uk/books/about/The_Human_Use_Of_Human_Beings.html?id=l9l6zquHvZIC&amp;redir_esc=y">foundational reading</a>. However, there is <a href="https://www.edge.org/conversation/john_brockman-possible-minds">growing</a> <a href="https://www.mpib-berlin.mpg.de/chm">work</a> in integrating cybernetics concepts in current research.</p>
+
+            <h3 id="human-ai-interaction">Human-AI Interaction</h3>
+
+            <p>Human-Computer Interaction (HCI) is an established field dating back to the 70s. It “<a href="https://en.wikipedia.org/wiki/Human%E2%80%93computer_interaction">studies</a> the design and use of computer technology, focused on the interfaces between people and computers”. Human-AI Interaction is a <a href="https://dl.acm.org/doi/10.1145/3290605.3300233">recently established</a> sub-field of HCI concerned with studying specifically the interactions between humans and “AI-infused systems”.</p>
+
+            <h3 id="computational-social-science">Computational Social Science</h3>
+
+            <p>“Using computers to model, simulate, and analyze social phenomena. It <a href="https://dirichlet.net/pdf/wallach15computational.pdf">focuses</a> on investigating social and behavioural relationships and interactions through social simulation, modelling, network analysis, and media analysis”</p>
+
+            <h3 id="collective-intelligence">Collective Intelligence</h3>
+
+            <p><a href="https://www.nesta.org.uk/report/future-minds-and-machines/">Defined</a> as “the enhanced capacity that is created when people work together, often with the help of technology, to mobilise a wider range of information, ideas, and insights”</p>
+
+            <h3 id="artificial-social-intelligence">Artificial Social Intelligence</h3>
+
+            <p>Which <a href="https://socialcdt.org/">some</a> define as “the domain aimed at endowing artificial agents with social intelligence, the ability to deal appropriately with users’ attitudes, intentions, feelings, personality and expectations”</p>
+
+            <h2 id="research-ideas-to-study-humans-with-ai-safety-in-mind">Research ideas to study humans with AI Safety in mind</h2>
+
+            <h3 id="1---understand-how-specific-alignment-techniques-interact-with-actual-humans">1 - Understand how specific alignment techniques interact with actual humans</h3>
+
+            <p>Many concrete proposals of AI Alignment solutions, such as <a href="https://www.lesswrong.com/posts/Br4xDbYu4Frwrb64a/writeup-progress-on-ai-safety-via-debate-1">AI Safety via Debate</a>, <a href="https://medium.com/@deepmindsafetyresearch/scalable-agent-alignment-via-reward-modeling-bf4ab06dfd84">Recursive Reward Modelling</a> or <a href="https://ai-alignment.com/iterated-distillation-and-amplification-157debfd1616">Iterated Distillation and Amplification</a> involve human supervision. However, as Geoffrey Irving and Amanda Askell <a href="https://distill.pub/2019/safety-needs-social-scientists">argued</a> we do not know what problems may emerge when these systems interact with real people in realistic situations. Irving and Askell suggested a <a href="https://distill.pub/2019/safety-needs-social-scientists/#questions">specific list of questions to work on</a>: the list is primarily aimed at the Debate technique but knowledge gained about how humans perform with one approach is likely to partially generalize to other approaches (I also recommend reading the <a href="https://www.lesswrong.com/posts/xkRRRZ7Pdny7AQK5r/link-openai-on-why-we-need-social-scientists">LessWrong comments</a> to their paper).</p>
+
+            <p><em>Potentially useful fields</em>: Cognitive science, Human-AI Interaction.</p>
+
+            <h3 id="2---demonstrate-where-factored-cognition-and-evaluation-work-well">2 - Demonstrate where factored cognition and evaluation work well</h3>
+
+            <p>Factored cognition and evaluation refer to mechanisms to address open-ended cognitive tasks by breaking them down (or factoring) into many small and mostly independent tasks. Note that the possibly recursive nature of this definition makes it hard to reason about the behaviour of these mechanisms in the limit. Paul Christiano already made <a href="https://www.lesswrong.com/posts/cpewqG3MjnKJpCr7E/ought-why-it-matters-and-ways-to-help#Factored_evaluation">the case for better understanding factored cognition end evaluation</a> when describing what <a href="https://ought.org/">Ought</a> is doing and why it matters. Factored cognition and evaluation are major components of numerous concrete proposals to solve outer alignment, including Paul’s ones. It, therefore, seems important to understand the extent to which factored cognition and evaluation work well for solving meaningful problems. Rohin Shah and Buck Shlegeris <a href="https://futureoflife.org/2020/04/15/an-overview-of-technical-ai-alignment-in-2018-and-2019-with-buck-shlegeris-and-rohin-shah/">mentioned</a> that they would love to see more research in this direction for similar reasons and also because it seems plausible to Buck that “this is the kind of thing where a bunch of enthusiastic people could make progress on their own”.</p>
+
+            <p><em>Potentially useful fields</em>: Cognitive science, Collective Intelligence</p>
+
+            <h3 id="3---unlocking-richer-feedback-signals">3 - Unlocking richer feedback signals</h3>
+
+            <p><a href="https://arxiv.org/abs/1811.07871">Jan Leike et al.</a> asked whether feedback-based models (such as <a href="https://medium.com/@deepmindsafetyresearch/scalable-agent-alignment-via-reward-modeling-bf4ab06dfd84">Recursive Reward Modelling</a> or <a href="https://ai-alignment.com/iterated-distillation-and-amplification-157debfd1616">Iterated Distillation and Amplification</a>) can attain sufficient accuracy with an amount of data that we can produce or label within a realistic budget. Explicitly expressing approval for a given set of agent behaviours is time-consuming and often an experimental bottleneck. Among themselves, humans tend to use more sample efficient feedback methods, such as non-verbal communication. The most immediate way of addressing this question is to work on understanding preferences and values from natural language, which is being tackled but still unsolved. Going further, can we train agents from head nods and other micro-expressions of approval? There are already existing examples of such work coming out of <a href="http://www.dcs.gla.ac.uk/~vincia/papers/sspsurvey.pdf">Social Signal Processing</a>. We can extend this idea as far as training agents using brain-waves, which would take us to <em>Brain-Computer Interfaces</em>, although this direction seems relatively further away in time. Additionally, it makes sense to study this because systems could develop it on their own and we would want to have a familiarity with it if they do.</p>
+
+            <p><em>Potentially useful fields</em>: Artificial Social Intelligence, Neuroscience</p>
+
+            <h3 id="4---unpacking-interpretability">4 - Unpacking interpretability</h3>
+
+            <p>Interpretability seems to be a key component of <a href="https://www.lesswrong.com/posts/fRsjBseRuvRhMPPE5/an-overview-of-11-proposals-for-building-safe-advanced-ai">numerous concrete solutions to inner alignment</a> problems. However, it also seems that improving our understanding of transparency and interpretability is an open problem. This probably requires both formal contributions around defining robust definitions of interpretability as well as the human cognitive processes involved in understanding, explaining and interpreting things. I would not be happy if we ended up with some interpretability tools that we trust for some socially idiosyncratic reasons but are not de-facto safe. I would be curious to see some work that tries to decouple these ideas and help us get out of the trap of interpretability as an <a href="https://arxiv.org/abs/1606.03490">ill-defined concept</a>.</p>
+
+            <p><em>Potentially useful fields</em>: Human-AI Interaction, Computational Social Science.</p>
+
+            <h3 id="5---understanding-better-what-learning-from-preferences-mean">5 - Understanding better what “learning from preferences” mean</h3>
+
+            <p>When talking about value alignment, I heard a few times an argument that goes like this: “while I can see that the algorithm is learning from my preferences, how can I know that it has learnt my preferences”? This is a hard problem since latent preferences seem to be somewhat unknowable in full. While we certainly need some work on ensuring generalisation across distributions and avoiding unacceptable outcomes, it would also be useful to better understand what would make people think that their preferences have been learnt. This could also help with concerns like gaming preferences or deceitfully soliciting approval.</p>
+
+            <p><em>Potentially useful fields</em>: Psychology, Cognitive Science, Human-AI Interaction</p>
+
+            <h3 id="6---understanding-value-formation-in-human-brains">6 - Understanding value formation in human brains</h3>
+
+            <p>This is something that I am less familiar about, but let me put it out there for debate anyway. Since we want to build systems that are aligned and compatible with human values, would it not be helpful to better understand how humans form values in their brains? I do not think that we should _copy _how humans form values, as there could be better ways to do it, but knowing how we do it could be helpful, to say the least. There is <a href="https://www.nature.com/articles/ncomms15808.pdf">ongoing work</a> in neuroscience to answer such questions.</p>
+
+            <p><em>Potentially useful fields</em>: Neuroscience</p>
+
+            <h3 id="7---understanding-the-risks-and-benefits-of-better-understanding-humans">7 - Understanding the risks and benefits of “better understanding humans”</h3>
+
+            <p>Some think that if powerful AI systems could understand us better, such as by doing more advanced sentiment recognition, there would be a significant risk that they may deceive and manipulate us better. On the contrary, others argue that if powerful AI systems cannot understand certain human concepts well, such as emotions, it may be easier for misaligned behaviour to emerge. While an AI having deceiving intentions would be problematic for many reasons other than its ability to understand us, it seems interesting to better understand the risks, benefits, and the trade-offs of enabling AI systems to understand us better. It might be that these are no different than any other capability, or it might be that there are some interesting specificities. <a href="https://www.lesswrong.com/s/r9tYkB2a8Fp4DN8yB/p/q2rCMHNXazALgQpGH#2_2__The_base_optimizer">Some also argued</a> that access to human modelling could be more likely to produce mesa-optimizers, learnt algorithms that have their own objectives. This argument hinges on the idea that since humans often act as optimizers, reasoning about humans would lead these algorithms to learn about optimization. A more in-depth evaluation of what reasoning about humans would involve could likely provide more evidence about the weight of this argument.</p>
+
+            <p><em>Potentially useful fields</em>: Cognitive Science, AI Safety Strategy.</p>
+
+            <h3 id="8---work-on-aligning-recommender-systems">8 - Work on aligning recommender systems</h3>
+
+            <p>Ivan Vendrov and Jeremy Nixon made <a href="https://forum.effectivealtruism.org/posts/xzjQvqDYahigHcwgQ/aligning-recommender-systems-as-cause-area">a compelling case</a> on why working on aligning existing recommended systems can lead to significant social benefits but also have positive flow-through effects on the broader problem of AGI alignment. Recommender systems are likely the largest datasets of real-word human decisions currently existing. Therefore, working on aligning them will require significantly more advanced models of human preferences values, such as metrics of extrapolated volition. It could also provide a large-scale real-world ground to test techniques of human-machine communication as interpretability and corrigibility.</p>
+
+            <p><em>Potentially useful fields:</em> Human-AI Interaction, Product Design</p>
+
+            <h2 id="conclusion">Conclusion</h2>
+
+            <p>The list is non-exhaustive and I am very curious to hear additional ideas and suggestions. Additionally, I am excited about any criticism or comments on the proposed ideas.</p>
+
+            <p>Finally, if you are interested in this topic, there are a couple of interesting further readings that overlap with what I am writing here, specifically:</p>
+
+            <ul>
+            <li><a href="https://forum.effectivealtruism.org/posts/WdMnmmqqiP5zCtSfv/cognitive-science-psychology-as-a-neglected-approach-to-ai">Kaj Sotala’s Cognitive Science/Psychology As a Neglected Approach to AI Safety</a></li>
+            <li><a href="https://aiimpacts.org/conversation-with-tom-griffiths/">CHAI’s Tom Griffiths answering AI Impacts’ questions about the intersection between cognitive science and AI</a></li>
+            </ul>
+
+            <p><em>Thanks to Stephen Casper, Max Chiswick, Mark Xu, Jiajia Hu, Joe Collman, Linda Linsefors, Alexander Fries, Andries Rosseau and Amanda Ngo which shared or discussed with me some of the ideas below.</em></p>
+
+      </div>
+   </body>
+
+   <footer>
+      <script src="../js/main.js"></script> 
+   </footer>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
