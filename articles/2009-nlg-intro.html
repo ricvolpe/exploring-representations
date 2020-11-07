@@ -1,0 +1,260 @@
+<html lang="en-US">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="theme-color" content="#ffffff" /> <title>ER/RV - Introduction to Natural Language Generation</title>
+      <meta name="description" content="A blog on people, machines and learning"/>
+      <link rel="stylesheet" href="../css/normalize.css">
+      <link rel="stylesheet" href="../css/terminal.css">
+      <link id="darkSheet" rel="stylesheet" href="../css/dark.css">
+      <!-- LaTeXMathML for articles that display Math -->
+      <script type="text/javascript" src="https://www.maths.nottingham.ac.uk/plp/pmadw/LaTeXMathML.js"></script>
+   </head>
+   <body>
+    <div class="container">
+        <h1>Introduction to Natural Language Generation</h1>
+        <div class="terminal-nav">
+           <nav class="terminal-menu">
+              <ul>
+                 <li><a href="../index.html">Home</a></li>
+                 <li></li><a id="ligthSwitch" onclick="switchLigth()">ligthSwitch</a></li>
+              </ul>
+           </nav>
+        </div>
+     </div>
+       <div class="container">
+            <h4 style="font-style: italic;">May 25, 2019</h4>
+            <figure class="image" align="center">
+               <img alt="How can I automate myself by developing a language generation model?" style="display:block; margin:auto; max-width:75%" src="../img/auto-me-1.jpg"/>
+               <figcaption style="text-align: center;">Robot installation at the Jewish Museum Berlin writes Torah scrolls (© robotlab)</figcaption>
+             </figure>
+            </br>
+            
+             <h2 id="-language-models">📚 Language Models</h2>
+             
+             <p>Statistical language models are fundamental components of Natural Language Processing (NLP). Have you ever heard names like <a href="https://allennlp.org/elmo" target="\_blank">ELMo</a>, <a href="https://github.com/google-research/bert" target="\_blank">BERT</a> or <a href="https://www.youtube.com/watch?v=89A4jGvaaKk" target="\_blank">GPT-2</a> in the news? Quoted as breakthroughs in natural language processing, they are all language models.</p>
+             
+             <p>You may assume that making machines generate coherent paragraphs of text we need complicated and intimidating systems. Instead, language models are simple: given a sequence of words, they predict what word is likely to follow.</p>
+             
+             <p>For instance, if you read the sentence <em>“I am so energetic, last night I slept so …”</em> you know that the word <em>well</em> is more likely to come next than the word <em>chicken</em>. Language models represent this intuition using probabilities:</p>
+            
+             <p style="text-align: center; font-size: 18px;">$P(well \mid I~am~so~energetic,~last~night~I~slept~so) > P(chicken \mid I~am~so~energetic,~last~night~I~slept~so)$</p>
+             
+             <p>As with most math, the sophistication comes from the number of things we can build upon this elegant foundation. For instance, language models may compute the above probability with things other than words. We know that given the utterance <em>“I a …“</em>, <em>“I am”</em> is more likely than <em>“I az”</em> and we can express this as <span style="font-size: 16px">$P(m \mid I~a) > P(z \mid I~a)$</span>. Some language models such as ELMo and BERT, are bi-directional, which means that they predict a code not just from what came before but also from what came after it.</p>
+             
+             <p>What is harder to conceive of is the complexity of different relationships between words that may exist in a large body of texts and the multi-dimensionality of the probability distributions that language models need to represent. Try, for instance, to imagine a probability distribution that models the next word for each sequence of four words in the English Wikipedia, which contains (as of 2019) an <a href="https://en.wikipedia.org/wiki/Wikipedia:Size_comparisons" target="\_blank">estimated 3.9 billion words</a>.</p>
+             
+             <p>The simple estimation from a source text of the frequency of each possible word given four input words is known as a 4-gram model. N-gram models (where the number of input words or characters to compute probability becomes a parameter <em>n</em>) are extensively used, and <a href="https://nbviewer.jupyter.org/gist/yoavg/d76121dfde2618422139" target="\_blank">often very effective</a>, as language models.</p>
+             
+             <h2 id="-neural-language-models">🧠 Neural Language Models</h2>
+             
+             <p>Within this context, Neural Language Models consists of putting Neural Networks to estimate the probability function described above. Given the flexibility of Neural Networks this can be done in a variety of ways, from predicting the next character given a sequence of preceding and following characters (ELMo) to predict randomly masked words in a sentence (BERT).</p>
+             
+             <p>A few days ago, I was reading a 2015 blog post by Andrej Karpathy titled <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="\_blank">“The Unreasonable Effectiveness of Recurrent Neural Networks”</a>. Andrej is a Stanford PhD student that developed and shared one of the first online courses on Convolutional Neural Network and is now the Director of AI at Tesla.</p>
+             
+             <p>In his article, Andrej describes how to develop a character-level language model using a Recurrent Neural Network (RNN) and shows how this model can generate texts surprisingly well. While the ability to generate coherent text pre-dates neural networks, the scientific community was impressed by the context-awareness of the model expressed by things such as its ability to properly indent and use brackets while writing code. This sensitivity to context became even more apparent with large scale and more complex Neural Language Models, such as <a href="https://openai.com/blog/better-language-models/" target="\_blank">Open AI’s GPT-2</a>. GPT-2 impressed observers by self-referencing its previous paragraphs when generating a text.</p>
+             
+             <p>While the ability to generate texts does not constitute general intelligence on its own, such impressive examples made me wonder whether I still need to write a blog myself or I could automate my writing using a language model. With this half-serious excuse to learn more about Neural Language Models in mind, I set myself to train a model on my notes and use it to generate text. Here is how it went.</p>
+             
+             <h2 id="-automating-myself">🤖 Automating Myself</h2>
+             
+             <p>🛠 <em>Warning.</em> From here onwards the article gets into the nitty-gritty of developing a neural language model. If you are not interested in the details, even if they are spiced up with numerous anecdotes, you can skip to the <a href="#-output">final output of my experiment</a>.</p>
+             
+             <h3 id="phase-0-tutorial"><strong>Phase 0: Tutorial</strong></h3>
+             
+             <p>After skimming through <a href="https://github.com/karpathy/char-rnn" target="\_blank">the code</a> that Andrej Karpathy originally released alongside his blog post, I decided to start from scratch and use <a href="https://keras.io" target="\_blank">Keras</a>. I started from the tutorial <a href="https://machinelearningmastery.com/develop-character-based-neural-language-model-keras/" target="\_blank">How to Develop a Character-Based Neural Language Model in Keras</a> from Jason Brownlee of <a href="https://machinelearningmastery.com" target="\_blank">Machine Learning Mastery</a>.</p>
+             
+             <p>The tutorial shows how to learn a language model of the nursery rhyme  <a href="https://en.wikipedia.org/wiki/Sing_a_Song_of_Sixpence" target="\_blank">“Sing a Song of Sixpence”</a>. Although I was able to quickly implement a model that reached 99% accuracy, it still got stuck in loops.</p>
+             
+             <p><em>Prediction Accuracy</em> (on the rhyme data) =  <code>99%</code></p>
+             
+             <p><em>Input</em> = <code>sing a song</code></p>
+             <em>Output</em>
+             <pre><code>Sing a song of sixpence,
+               a pocket full of rye. 
+               four and twenty blackbirds, 
+               baked in a pie. 
+
+               When the pie was opened 
+               the birds began to sing; 
+               wasn't that a dainty dish, 
+               to set before the king. 
+
+               The king was in his 
+               counting out his money; 
+               the queen was in the parlour, 
+               eating bread and honey. 
+
+               The maid was in the parlour, 
+               eating bread and honey. 
+               The maid was in the parlour, 
+               eating bread and honey. 
+               The maid was in the parlour, 
+               eating bread and honey. 
+               ...
+             </code></pre>
+             
+             <p>First, the model cuts the tense <code class="highlighter-rouge">the king was in his counting-house, counting out his money;</code> into <code class="highlighter-rouge">the king was in his counting out his money;</code> since it predicted that after <code class="highlighter-rouge">counting</code> the most likely next word is <code class="highlighter-rouge">out</code>. Also, instead of learning that <code class="highlighter-rouge">the maid was in the garden</code> the model got trapped in predicting that <code class="highlighter-rouge">was in the</code> must be followed by <code class="highlighter-rouge">parlour</code> (which is where the queen was). Sadly, since <code class="highlighter-rouge">parlour</code> is followed by <code class="highlighter-rouge">eating bread and honey</code> which is in turn followed by <code class="highlighter-rouge">the maid was in the</code>, learning this pattern means getting stuck in an endless loop 😅</p>
+             
+             <h3 id="phase-1-iterating-over-bugs"><strong>Phase 1: Iterating Over Bugs</strong></h3>
+             
+             <p>Since I have not written thousands of articles yet, the best data source I could find was 1400 personal notes I wrote in the past four years. Using a sequence length of ten characters, which consists of predicting the next character given the previous nine, this yields around two millions of character sequences.</p>
+             
+             <p>After having quickly adapted the tutorial code to my data and decreased some parameters to get results more quickly, I let the model train for about 10 epochs and then collected my output, which was a depressingly long series of repeated <code class="highlighter-rouge">the</code>.</p>
+             
+             <p>Despite changing few things, since nothing improved the performance (stuck on <code class="highlighter-rouge">the the the ...</code>) I went back to the tutorial data (the nursery rhyme) and noticed that the model was performing badly on them as well.</p>
+             
+             <blockquote>
+               <p>📙 Keep test data that you can guarantee the model will perform perfectly on and go back to it whenever the model misbehaves on any other data.</p>
+             </blockquote>
+             
+             <p>By going back to the sample data, I figured that the bug was caused by having reduced the capacity of the model (the number of LSTM cells) too drastically from 75 to 5. While this made training over my data faster, it created a bottleneck which likely constrained the model to memorize nothing more than the most basic patterns (such as <code class="highlighter-rouge">the</code>). After fixing the bug, the model still performed poorly on my data, but small improvements could be noticed. Given the input <code class="highlighter-rouge">today I am going to write about</code>, the model predicted the output <code class="highlighter-rouge">the send the send the send</code>.</p>
+             
+             <p>At this point, given the increased work I was putting into my experiments, I developed a small pipeline that would automatically save the structure, parameters and performance of each experiment and created a sample dataset of similar size than the nursery rhyme but made of my notes These few steps took no more than few hours but went a long way in helping me progress.</p>
+             
+             <blockquote>
+               <p>📙 Developing a good structure for your model development and training is a quickly rewarding time investment.</p>
+             </blockquote>
+             
+             <p>By now I achieved language-like but meaningless results on the sample data of my notes. The experiments structure made it much easier for me to record the following output from a training run labelled  <code class="highlighter-rouge">test_network_look_alike_070819_1900</code>.</p>
+             
+             <p><em>Prediction Accuracy</em> (on the sample notes data) = <code class="highlighter-rouge">85%</code></p>
+             
+             <p><em>Input</em> = <code class="highlighter-rouge">On automating myself</code></p>
+             
+             <p><em>Output</em></p>
+             
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On automating myself lost. how at the frest and stayyor als it htt slose the city was bakeocord that in the for door.  htmen-bed experess i sto last difl m new angayels ware  5 as ape this a strated packeas use mand the fron meed fastion)  doig-toper -s troid to manage that you can stlll less . e man &gt; invis sectras/ 1/3 loot, the /xtorks where and heal, the cresericas 1. must be going here?  we nee desigrions the trisl, but reffull fustcrout money that the someth, collore and kindss.
+             </code></pre></div></div>
+             
+             <h3 id="phase-2-hardware-muscles"><strong>Phase 2: Hardware Muscles</strong></h3>
+             
+             <p>Training machine learning models on CPUs (i.e. most laptops) is nowadays impossible. Thus, it was now time for me to move my model training to more powerful hardware on the Cloud. Conscious that the hardware costs of machine learning can get out of control, I decided to find a set up with a good speed/price ratio. Following the helpful guidance of the <a href="https://course.fast.ai/start_gcp.html" target="\_blank">documentation from fast.ai</a>, I set up a cloud instance on Google Cloud Platform (GPC) using the <code class="highlighter-rouge">n1-highmem-8</code> instance type with an NVIDIA Tesla P4 as an accelerator.</p>
+             
+             <p>My final machine was set up for £0.752 per hour. I started my training on a Friday evening and recorded that one training epoch took 255 seconds. Since I set up the training for 500 epochs, I prepared myself to collect the results on Sunday morning (after ~35 hours). After 500 epochs, 35 hours and 27£ consumed, I triggered the newly trained network to generate a sample.</p>
+             
+             <p><em>Prediction Accuracy</em> (on my full notes data) = <code class="highlighter-rouge">63%</code></p>
+             
+             <p><em>Input</em> = <code class="highlighter-rouge">On automating myself</code></p>
+             
+             <p><em>Output</em></p>
+             
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is about the problem is to be a lot of statement to a state of the strength and weakness of the problem is to be a lot of statement to a state of the strength and weakness of the problem is to be a lot of statement to a state of the strength and weakness of the problem is ...
+             </code></pre></div></div>
+             
+             <h3 id="phase-3-better-generation"><strong>Phase 3: Better Generation</strong></h3>
+             
+             <p>💸 Looking at the loss function value over training time, I noticed that after about the 100th epoch the model was not learning anything useful anymore and that I just wasted about 400 epochs and 20£.</p>
+             
+             <figure class="image" align="center">
+               <img alt="Neural LSTM Character Level Language Model Loss Graph" style="display:block; margin: auto; max-width:75%" src="../img/auto-me-2.png"/>
+               <figcaption style="text-align: center;">Neural LSTM Character Level Language Model loss over training time (training epoch number)</figcaption>
+             </figure>
+            </br>
+             
+             <p>Given the above, I decided to implement Keras check-pointer and early-stopper. These train the model only on a specified percentage of the data and hold out the remaining data points. They then validate the model at the end of every epoch. If the performance on the holdout data stop improving for more than a specific number of epochs (a parameter referred as <em>patience</em>) they stop the training and save the model that overall performed best on the holdout data.</p>
+             
+             <p>However, even if now felt safer to try more complex models, I still was not able to get improvements. So I started looking for solutions elsewhere. Specifically, I decided to improve how the model was generating text. Text generation consists of taking the trained model and using its predictions to generate the text. There are three common ways to do it:</p>
+             
+             <ul>
+               <li>Greedily keep picking the character with the highest predicted probability</li>
+               <li>Sampling from the conditional probability distribution</li>
+               <li>Keeping track of several likely variants at each step (known as Beam Search)</li>
+             </ul>
+             
+             <p>Armed with more hope, I implement all generation approaches and compared the results.</p>
+             
+             <p><em>Greedy Output</em></p>
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is about the problem is to be a lot of statement to a state of the strength and weakness of the problem is to be a lot of statement to a state of the strength and weakness of the problem is to be a lot of statement to a state of the strength and weakness of the problem
+             </code></pre></div></div>
+             
+             <p><em>Sampling Output</em></p>
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is about speeches naws, because we do pers customer more. doing my better. 1. i could intelligence â¢ be resporl new 10-2019 practical aug 27 - 47 meeting. i would need sometimes i would lack about the fields? how would decide it solve memomic cheiches mean sorm of preining my energiving when walkness to a function.
+             </code></pre></div></div>
+             
+             <p><em>Beam Search Output</em></p>
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is about this text for? what do i expect to find in the text? is there any major empirical conclusion and reading after reading what i have (or have not) understood? (make your own note of the text? is there any major empirical conclusion and reading after reading what i have (or have not) understood?
+             </code></pre></div></div>
+             
+             <p>From the results, I noticed that greedy search was by far the worst approach and beam search could create much more cohesive text but would still get stuck in loops. On the other hand, sampling did not get suck into loops but created gibberish text.</p>
+             
+             <blockquote>
+               <p>📙 Model architectures are not everything: refining all other components in your model can change things significantly!</p>
+             </blockquote>
+             
+             <p>Accordingly, I decided to combine Beam Search and sampling into what I called <em>Stochastic Beam Search</em> (a beam search using sampling), which gave me surprising results.</p>
+             
+             <p><em>Prediction Accuracy</em> (on my full notes data) =  <code class="highlighter-rouge">63%</code></p>
+             
+             <p><em>Input</em> = <code class="highlighter-rouge">This is about</code></p>
+             
+             <p><em>Output</em></p>
+             
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is about the problem with the company and the problem and personal information and reading what i have (or have not) understood? (make your own note of the decision making and complexity is a consulting in the text? is there any major empirical conclusion and reading what are the main ideas presented in the company and then and the problem and predictions and problems and discussion of the problem and responsibilities and discussions and then and have the relationship of the company to learn from the problem with the world.
+             </code></pre></div></div>
+             
+             <p>Grammatic inconsistencies aside, the model started producing text that sounded like me. You may notice that many of the notes I trained the model with were personal rather than public ones, also I studied decision making and struggled with decisions making at a company I co-founded during the last two years 😅</p>
+             
+             <h3 id="phase-4-transfer-learning"><strong>Phase 4: Transfer Learning</strong></h3>
+             
+             <p>While my latest results were more encouraging, it was clear that the model still lacked many required writing skills such as completing a sentence. At this point, I started doubting the quality and quantity of the data I was training the model with. Thankfully, the latest research in NLP provides approaches to develop good models even for small datasets. The approach is called transfer learning and was kick-started by <a href="https://arxiv.org/abs/1801.06146" target="\_blank">this paper</a> from <a href="http://jhoward.fastmail.fm/" target="\_blank">Jeremy Howard</a> and <a href="https://ruder.io" target="\_blank">Sebastian Ruder</a>. In a nutshell, transfer learning consists of taking a language model that was pre-trained on a large data set (such as <a href="https://blog.einstein.ai/the-wikitext-long-term-dependency-language-modeling-dataset/" target="\_blank">WikiText-103</a> and the fine-tuning this model for a specific small dataset.</p>
+             
+             <p>To apply transfer learning to automate myself, I used the powerful <a href="https://github.com/fastai/fastai" target="\_blank">fast.ai library</a>. This implies that these last results are uncomparable with what obtained in other phases since both training data and model architectures changed significantly. Also, the large size of data used to the pre-train the model implied that I could remove a lot of lower quality data from my notes data used for fine-tuning. For instance, I removed all sentences without a verb or that did not end. However, from a qualitative point of view, transfer learning changed the game.</p>
+             
+             <p><em>Prediction Accuracy</em> (on my full notes data minus low-quality sentences) = <code class="highlighter-rouge">22%</code></p>
+             
+             <p><em>Input</em> = <code class="highlighter-rouge">How can we perform better on the workplace?</code></p>
+             
+             <p><em>Output</em></p>
+             
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>How can we perform better on the workplace? It is challenging the clients that make sense of the public complexity , transform it in directly prioritising our data science model and transform it in mock - ups of actions ( that are showed of different people ) to build a da point. Workload is destructive and the people left is avoiding problems. Must the increase of the solution market will see satisfaction from it even in the actually broad market and too high need to tackle new part of it.
+             </code></pre></div></div>
+             
+             <h3 id="-output">🥁 Output</h3>
+             
+             <p>Here are some sample final outputs of trying to automate my writing. They are obtained using the last tried approach, transfer learning.</p>
+             
+             <p><span style="color:#efca08"><strong>Me:</strong> </span><code class="highlighter-rouge">I think that</code></p>
+             
+             <p><span style="color:#efca08"><strong>Model:</strong></span></p>
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I think that AI is a key element of our mission.
+             </code></pre></div></div>
+             
+             <p><span style="color:#0072bb"><strong>Me:</strong> </span><code class="highlighter-rouge">Today I am writing about deep learning.</code></p>
+             
+             <p><span style="color:#0072bb"><strong>Model:</strong></span></p>
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Today I am writing about deep learning harness (the technology) to solve real problems. I tried in seeing proved of two structures where there are always the very best solving algorithms to model the complexity of living cells. I developed the so - called forecasting more and more speculative ve interests in more data science and artificial intelligence - despite its lack of practical focus. Since entering of neural networks I tried to uncover difference with the algorithms and then try to find computers and more then API terms and then use literature data.
+             </code></pre></div></div>
+             
+             <p><span style="color:#8fc93a"><strong>Me:</strong> </span><code class="highlighter-rouge">Riccardo</code></p>
+             
+             <p><span style="color:#8fc93a"><strong>Model:</strong></span></p>
+             <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Riccardo designs and support technology solutions, with a focus on data science, machine learning and blockchain technologies. He has a background in machine learning, a technique in machine learning and machine learning a further psychology.
+             </code></pre></div></div>
+             
+             <p>In summary, I would not say that my blog is at risk of machine take-over but neither that such day is that far away!</p>
+             
+      </div>
+   </body>
+
+   <footer>
+      <script src="../js/main.js"></script> 
+   </footer>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
