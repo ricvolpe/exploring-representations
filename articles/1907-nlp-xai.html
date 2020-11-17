@@ -1,0 +1,122 @@
+<html lang="en-US">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <link rel="apple-touch-icon" sizes="180x180" href="../fav/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="../fav/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="../fav/favicon-16x16.png">
+      <link rel="manifest" href="../fav/site.webmanifest">
+      <meta name="theme-color" content="#ffffff" /> <title>ER/RV - NLP meets XAI: Top 5 Trends in NLP Explainability</title>
+      <meta name="description" content="A blog on people, machines and learning"/>
+      <link rel="stylesheet" href="../css/normalize.css">
+      <link rel="stylesheet" href="../css/terminal.css">
+      <link id="darkSheet" rel="stylesheet" href="../css/dark.css">
+      <!-- LaTeXMathML for articles that display Math -->
+      <script type="text/javascript" src="https://www.maths.nottingham.ac.uk/plp/pmadw/LaTeXMathML.js"></script>
+   </head>
+   <body>
+    <div class="container">
+        <h1>NLP meets XAI: Top 5 Trends in NLP Explainability</h1>
+        <div class="terminal-nav">
+           <nav class="terminal-menu">
+              <ul>
+                 <li><a href="../index.html">Home</a></li>
+                 <li></li><a id="ligthSwitch" onclick="switchLigth()">ligthSwitch</a></li>
+              </ul>
+           </nav>
+        </div>
+     </div>
+       <div class="container">
+            <h4 style="font-style: italic;">September 7, 2019</h4>
+            <figure class="image" align="center">
+               <img alt="NLP meets XAI: Top 5 Trends in NLP Explainability" style="max-width: 100%" src="../img/nlp-xai-1.png"/>
+               <figcaption style="text-align: center;">Image credit: Sargur N. Srihari.</figcaption>
+             </figure>
+             <br>
+             <p>As a consequence of smarter information systems becoming embedded in our society, many countries are developing <a href="https://blog.einstein.ai/frameworks-tool-kits-principles-and-oaths-oh-my/" target="\_blank">AI ethics frameworks</a> to address issues about fairness, transparency and accountability in technology (those interested should go to Barcelona in January 2020 for the <a href="https://fatconference.org/" target="\_blank">ACM FAT* Conference</a>, the centre of this exploding community). Accordingly, the ability to interpret and explain machine learning models is becoming a hot research topic. Teaching an introductory course in AI in the Social Sciences at the London School of Economics, I personally experienced the strong interest of social scientists in understanding how models could perform under different circumstances and the implications for issues such as gender inequality.</p>
+             
+             <p>Explainable AI (XAI) is based on multiple needs. First, there is a need to justify a model’s decisions to others such as why a deep learning model denied parole to an individual. This relates to a second need for complying with rights to explanations that are being introduced in legislations. Also, AI often relies on patterns in data that are not available to humans because of their complexity. Making such knowledge explicit can inform actions other than the specific task assigned to the model, such as why a model predicted grade 3 tumour instead of 4. Finally, understanding models better can allow practitioners to spot their weaknesses and improve them.</p>
+             
+             <p>Alongside governments and science, another strong advocate of explainability is industry. I personally experienced how organisations resist deploying unexplainable systems whenever they face implications for their employees. The increasing adoption of AI in industries such as finance, legal, medical and defence, led the US Defense Advanced Research Projects Agency to launch a project focused on explaining artificial intelligence systems. DARPA XAI is the DARPA project on AI that was <a href="https://www.tenco-tech.com/news/3/243.html" target="\_blank">assigned the highest funding for 2020</a> (26.05 million USD).</p>
+             
+             <p>In the machine learning community, there is a common belief that a negative relationship exists between the performance of a model and its explainability. I believe that lack of interpretability of complex systems is not a given property but the lack of mature and established interpretation methodologies. While mine is a claim to be proved, I think that developing equally performant yet interpretable models is a crucial research direction because it will reduce the opportunity-cost of AI adoption.</p>
+             
+             <p>This article focuses on recent explainability approaches in the domain of Natural Language Processing (NLP). Dealing with text, NLP models solve tasks that often need human-comprehensible interpretations, such as the scoring of student essays or the translation of international meetings. This article is mainly a summarisation of the paper <a href="https://www.mitpressjournals.org/doi/full/10.1162/tacl_a_00254" target="\_blank">Analysis Methods in Neural Language Processing: A Survey</a>  (Belinkov and Glass, 2019) and a short course on XAI from <a href="https://cedar.buffalo.edu/~srihari/" target="\_blank">Sargur N. Srihari</a> at the DeepLearn19 Summer School</a>. For more detailed investigations, I recommend following the links.</p>
+             
+             <p>The traditional classification of XAI divides approaches into ante-hoc and post-hoc. While ante-hoc systems seed explainability into the model from the start, post-hoc systems base explainability on test cases and results. Another way to distinguish approaches is to look at what they explain. When investigating a model, one may focus on different components: the most influential training examples, the most salient input features or meaningful features inside the layers of a deep net. More generally, one may seek an explanation by examples to help understand the data or an explanation by features to help understand better how the model internally represent the data. In the context of NLP, this involves investigating different components of the model and different linguistic units ranging from characters to sentences. The following sub-sections present the main trends in explaining <strong>what linguistic knowledge is captured by neural networks</strong>, <strong>why they make certain predictions</strong>, <strong>if they are robust</strong>, <strong>interpreting the way they represent language</strong> and <strong>how they fail</strong>. For an overview of the research landscape, I recommend:</p>
+             <ul>
+               <li><a href="https://arxiv.org/abs/1606.03490" target="\_blank">The Mythos of Model Interpretability (Lipton, 2016)</a></li>
+               <li><a href="https://www.darpa.mil/attachments/XAIProgramUpdate.pdf" target="\_blank">Explainable Artificial Intelligence (XAI) DARPA Program Update (November 2017)</a></li>
+             </ul>
+             
+             <h2 id="1-linguistic-knowledge-of-neural-networks">1. Linguistic Knowledge of Neural Networks</h2>
+             <figure class="image" align="center">
+               <img alt="Open AI sentiment neuron adjusting its value on a character-by-character basis. " style="max-width: 100%" src="https://openai.com/content/images/2017/04/sentiment-prediction.png" />
+               <figcaption style="text-align: center;">The sentiment neuron at work (Image credit: Open AI)</figcaption>
+             </figure>
+             <br>
+             <p>Neural networks in NLP are trained in an end-to-end manner on input-output pairs. As we do not explicitly encode linguistic features a natural question to ask is <strong>what linguistic information is captured in neural networks?</strong></p>
+             
+             <p>The answer to this question depends on three elements:</p>
+             <ol>
+               <li>the methods used to analyse the network (such as classification or clustering)</li>
+               <li>the type of linguistic information we assume the network captured (such as sentence length, parts of speech, or concepts)</li>
+               <li>the part of the neural network being investigated (such as attention weights, activations or embeddings)</li>
+             </ol>
+             
+             <p>The most common <strong>method</strong> is called <em>Auxiliary Prediction Task</em>, also known as diagnostic classifiers or probing tasks. It consists of training a neural network on some task, freezing its weights and then running the neural network on a corpus with linguistic annotations and record its representations. Finally, we can use these recorded representations to predict a property of interests and take the ability to predict such property as an indication that the network has learnt the property. The most famous example of this is <a href="https://openai.com/blog/unsupervised-sentiment-neuron/" target="\_blank">Open AI’s sentiment neuron</a>. Other approaches exist, such as counting how often attention weights agree with a linguistic property or computing correlations between neural network activations and some property. One interesting result of these analyses is that lower layers in the network tend to capture more localised information. For instance in <a href="https://allennlp.org/elmo" target="\_blank">ELMo</a> the first layer is better to predict parts-of-speech but the second layer is better to predict word sense disambiguation. Many different <strong>linguistic phenomena</strong> are studied. In general, it seems that neural networks can learn a substantial amount of information on various linguistic phenomena, although rare properties are more difficult to learn since neural nets are essentially correlation-based machines. Interestingly, networks that processed sentences as parsed trees developed trees that did not correspond to known linguistic theories, casting doubt on the importance of syntax-learning, or even if there exist alternative ways of modelling syntax from those developed by humans experts. In terms of <strong>limitations</strong>, while these analyses show that linguistic information is captured by the networks, they do not tell if it is actually used. On this note, it was observed that translation quality and performance on the auxiliary task were negatively correlated in some high-quality systems. This points to a very interesting question: can we study if encoding linguistic properties <strong>causes</strong> the model to perform well in some downstream tasks? While neural networks remain correlation-based machines, methods from causal inference may be used to prove how their ability to learning something affects their ability to do something.</p>
+             
+             <h2 id="2-explaining-predictions">2. Explaining Predictions</h2>
+             <figure class="image" align="center">
+               <img alt="Explanations of machine translations from Alvarez-Melis and Jaakkola (2017)" style="max-width: 100%" src="../img/nlp-xai-2.png" />
+               <figcaption style="text-align: center;">Explanations of English to French machine translations from Alvarez-Melis and Jaakkola (2017). The authors also used their explainability framework to spot gender bias in the translation system. If you speak French you may be able to spot the bias. <p>(Image credit: Alvarez-Melis and Jaakkola, 2017)</p></figcaption>
+             </figure>
+             <p>A critical XAI property often advocated by end-users is the ability to <strong>explain specific predictions</strong>. Compared to other trends, the ability to explain predictions in NLP is still limited and researchers advocate for further work in this area. One way is to ask the model to generate explanations along with predictions. However, this requires hard to collect manual annotations of explanations. Alternatively, some authors use parts of the inputs as explanations, such as a distribution over text fragments as candidate rationale for justifying sentiment analysis prediction. These methods resemble the idea of <a href="http://lineardigressions.com/episodes/2019/8/18/data-shapley" target="\_blank">Data Shapley</a> presented at the last ICML. The last and most common approach in explaining predictions focuses on perturbing inputs. This method allows to approximating the underlying model with an additional one learned on perturbation of the original instance and to identify input components that have the greatest effect on predictions but also makes sense to a human. Advantages of this approach are that it is model agnostic and that is much easier to learn explanations on locally weighted dataset rather than approximate a model globally. My highlights:</p>
+             <ul>
+               <li><a href="https://www.oreilly.com/learning/introduction-to-local-interpretable-model-agnostic-explanations-lime" target="\_blank">Local Interpretable Model-Agnostic Explanations (LIME)</a> which is also developing as an <a href="https://github.com/marcotcr/lime" target="\_blank">open-source project</a>.</li>
+               <li><a href="http://people.csail.mit.edu/tommi/papers/AlvJaa_EMNLP2017.pdf" target="\_blank">A causal framework for explaining the predictions of black-box sequence-to-sequence models</a> which shows that analysing variations in outputs due to local perturbation of input is becoming a robust approach for explainability and how to perturb NLP inputs using variational autoencoders.</li>
+             </ul>
+             
+             <h2 id="3-challenge-sets">3. Challenge Sets</h2>
+             <p><strong>Challenge sets</strong>, also known as tests suites, are evaluation datasets. They have been used in NLP for a long time and while they were out of fashion in the last ten years, they are recently making a comeback. While they lack the main advantage of test corpora of reflecting naturally occurring data, they focus on properties such as systematicity, control over data, the inclusion of negative data and exhaustivity. Targeted tasks for challenge sets are mostly Natural Language Inference (NLI) and Machine Translation (MT), thus more challenge sets for evaluating other tasks are needed. Additionally, the vast majority of challenge sets are in English. While there is a need to construct challenge sets for other languages, perhaps more pressing is the need for large-scale non-English datasets (besides MT) to develop neural models for popular NLP tasks. Existing challenges sets evaluate models on a wide range of linguistic phenomena: MT evaluation focuses on properties as subject-verb agreement and verb-particle construction, while NLI challenges sets (such as GLUE) focus on properties such as lexical semantics and predicate-argument structure. Generally, datasets constructed programmatically tend to cover less fine-grained linguistic properties but they are larger in size (e.g. one million examples), while dataset constructed by hand represent more diverse phenomena but are smaller (e.g. hundreds of examples). Semi-automatic constructed datasets fall in between both of these attributes. Challenge sets have been criticised for their correlation with downstream performance. Some authors argued that even if there may be a relation, challenge sets have the purpose to test systems on extreme or more difficult cases beyond normal operational capacity.</p>
+             
+             <h2 id="4-interpreting-language-embeddings">4. Interpreting Language Embeddings</h2>
+             <figure class="image" align="center">
+               <img alt="Top participants of eigenvectors (dimensions with highest magnitudes) from Shin et al. (2018)" style="max-width: 100%" src="../img/nlp-xai-3.png" />
+               <figcaption style="text-align: center;">Top participants of eigenvectors (dimensions with highest magnitudes) of Singular Value Decomposition (SVD) matrix. (Image credit: Shin et al., 2018)</figcaption>
+             </figure>
+             <br>
+             <p>Distributed representations of text inputs (i.e. language embeddings) play a key role in NLP models. Often trained using language models they are then incorporated in the majority of models for the downstream task. While their power is uncontested, their interpretability, both in linguistics and conceptual terms, is still an open challenge. There have been some behavioural experiments to confirm the meaningfulness of word embeddings using word-intrusion. This work extends earlier work done by <a href="http://users.umiacs.umd.edu/~jbg/docs/nips2009-rtl.pdf" target="\_blank">Chang et al. (2009)</a> to interpret probabilistic topic models. As word-intrusion evaluation is costly, alternative automatic metrics are available, as they are available for topic models. A common approach to interpret embeddings is to force sparsity at training time, such as <a href="https://arxiv.org/pdf/1809.08621.pdf" target="\_blank">Learning and Evaluating Sparse Interpretable Sentence Embeddings by Trifonov et al. (2018)</a>. The alternative to this is to achieve sparsity by post-processing pre-trained word embeddings such as in <a href="https://github.com/harsh19/SPINE" target="\_blank">SPINE, Jhamtani et al. (2018)</a>. Both these two methods were able to successfully achieve interpretability in the column space evaluated with word intrusion detection tests. Interestingly <a href="https://openreview.net/forum?id=rJfJiR5ooX" target="\_blank">Shin et al. (2018)</a> go beyond both methods and show that conventional embeddings obtained from Singular Value Decompositions have meaningful features and can be analysed using a novel eigenvector analysis method inspired from Random Matrix Theory.</p>
+             
+             <h2 id="5-adversarial-examples">5. Adversarial Examples</h2>
+             
+             <p><strong>Adversarial examples</strong> became famous for their ability to explain the failures of computer vision systems. Their formal definition is: given a neural network model $f$ and an input example $x$ generate an adversarial example $\tilde{x}$ that will have minimal distance from $>x$ while being assigned a different label (from $x$) by $f$. However, applying this definition to the text domain creates two challenges: first, it is not clear how to measure the distance between the two examples and second, minimising this distance is not trivial given that it requires computing the gradient with respect to a discrete input. Adversarial examples can be done using access to model parameters (known as <em>white-box attacks</em>) or without (known as <em>black-box attacks</em>). Given the two challenges above, white-box attacks are harder to adapt to the textual world. Nonetheless, attempts have been made, such as searching for the closest word embedding in a given dictionary or representing text edit operations in vector space. Black-box attacks are more common, although they generally require access to the model prediction score. Another way of distinguishing attack types is whether they are targeted on a specific false class (<em>targeted attacks</em>) or only cares that the predicted class is wrong (<em>non-targeted attacks</em>). Note that targeted attacks usually require knowledge of model parameters (they are white-box attacks). Most of the work on adversarial text examples involves modification at the character, word or sentence level and focuses on high-level tasks such as text classification, sentiment analysis or reading comprehension. Another interesting thing to note is that different from computer vision attacks, text examples generated by small changes to the original text may be obviously different for humans and thus fail to be truly adversarial.</p>
+             
+             <hr/>
+             
+             <p>To summarise, the research in these five areas (analysing the linguistic knowledge of neural networks, explaining predictions, stress-testing models via challenge sets or adversarial examples and interpreting language embeddings) is progressing rapidly. I believe that we will see even more exciting and general method appearing in the next few years. Perhaps even more excitingly, we will see some of these approaches started to be used in real-life applications and building that trust in AI that many are still quoting as lacking.</p>             
+      </div>
+   </body>
+
+   <footer>
+      <p style="text-align: center; font-size: 12px;">© Riccardo Volpato <script>document.write(new Date().getFullYear())</script></p>
+      <script src="../js/main.js"></script> 
+   </footer>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
