@@ -20,13 +20,13 @@ if (lastSwitch == null | (now - lastTimeStamp) > 1000 * 60 * 60 * 12) {
 
 function ligthsOff() {
    el.disabled = false;
-   document.getElementById("ligthSwitch").textContent="ligthsOn";
+   document.getElementById("ligthSwitch").textContent="lightsOn";
    localStorage.setItem('lastSwitch', 'dark');
 }
 
 function ligthsOn() {
    el.disabled = true;
-   document.getElementById("ligthSwitch").textContent="ligthsOff";
+   document.getElementById("ligthSwitch").textContent="lightsOff";
    localStorage.setItem('lastSwitch', 'ligth');
 }
 
