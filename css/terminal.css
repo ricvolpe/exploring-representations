@@ -77,10 +77,6 @@
   .logo {
     line-height: var(--global-line-height);
   }
-
-  h1 {
-    line-height: 40px;
-  }
   
   a {
     cursor: pointer;
@@ -143,7 +139,6 @@
     position: relative;
     display: inline-block;
     display: table-cell;
-    padding: calc(var(--global-space) * 2) 0 calc(var(--global-space) * 2);
     margin: 0;
     overflow: hidden;
     font-weight: 600;
