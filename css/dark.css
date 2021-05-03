@@ -1,15 +1,5 @@
 :root {
-    --global-font-size: 18px;
-    --global-line-height: 30px;
-    --global-space: 12px;
-    --font-stack: Menlo, Monaco, Lucida Console, Liberation Mono,
-      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
-      serif;
-    --mono-font-stack: Menlo, Monaco, Lucida Console, Liberation Mono,
-      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
-      serif;
     --background-color: #222225;
-    --page-width: 60em;
     --font-color: #e8e9ed;
     --invert-font-color: #222225;
     --secondary-color: #a3abba;

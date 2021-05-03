@@ -1,11 +1,11 @@
 :root {
-    --global-font-size: 18px;
-    --global-line-height: 30px;
+    --global-font-size: 22px;
+    --global-line-height: 1.5625;
     --global-space: 12px;
-    --font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    --font-stack: sans-serif;
     --mono-font-stack: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     --background-color: #fff;
-    --page-width: 60em;
+    --page-width: 800px;
     --font-color: #151515;
     --invert-font-color: #fff;
     --primary-color: #1a95e0;
@@ -354,6 +354,12 @@
   
   .terminal-menu {
     width: 100%;
+    font-size: 18px;
+    font-family: var(--mono-font-stack);
+  }
+
+  .site-header {
+    margin: 0 2em 0 2em;
   }
   
   .terminal-nav {
@@ -445,6 +451,7 @@
   
   p {
     margin: 0 0 var(--global-line-height);
+    margin-bottom: 1em;
     color: var(--global-font-color);
   }
   
@@ -967,6 +974,8 @@
   figure > figcaption {
     color: var(--secondary-color);
     text-align: center;
+    font-size: 18px;
+    font-style: italic;
   }
   
   .hljs {
