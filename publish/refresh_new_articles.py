@@ -21,7 +21,7 @@ if __name__ == "__main__":
     
     with open(f'js/articles_new.js', 'w') as fOut:
         fOut.writelines('document.write(`' + os.linesep)
-        fOut.writelines('<ul style="margin-top: 5px;">' + os.linesep)
+        fOut.writelines('<table style="width:100%;">' + os.linesep)
 
         for article in articles:
             path = f'articles/{article}'
@@ -33,12 +33,14 @@ if __name__ == "__main__":
                 article_content = fIn.read()
             
             title = re.findall(r'<title>(.*)<\/title>', article_content)[0]
-            fOut.writelines(f'<li><a href="{path}">{title}</a>' + os.linesep)
-            fOut.writelines(f'<span style="float:right">{month} {year}</span>')
-            fOut.writelines('</li>' + os.linesep)
+
+            fOut.writelines('<tr>' + os.linesep)
+            fOut.writelines(f'<td>- <a href="{path}">{title}</a></td>' + os.linesep)
+            fOut.writelines(f'<td>{month} {year}</td>'  + os.linesep)
+            fOut.writelines('</tr>' + os.linesep)
 
 
-        fOut.writelines('</ul>' + os.linesep)
+        fOut.writelines('</table>' + os.linesep)
         fOut.writelines('`);' + os.linesep)
 
      
