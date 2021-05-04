@@ -19,7 +19,7 @@ def parse_file(path):
 def generate_html(title, paragraphs):
     filepath = "_".join(title.split(" ")[:3]).lower()
     today = datetime.today()
-    with open(f'articles/{today.strftime("%Y_%m")}-{filepath}.html', 'w+') as fOut:
+    with open(f'articles/{today.strftime("%y%m")}-{filepath}.html', 'w+') as fOut:
         fOut.writelines('<html lang="en-US">' + os.linesep)
         fOut.writelines(generate_header(title))
         fOut.writelines('<body>' + os.linesep)

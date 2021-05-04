@@ -1,0 +1,61 @@
+<html lang="en-US">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="fav/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="fav/favicon-16x16.png">
+      <link rel="manifest" href="fav/site.webmanifest">
+      <meta name="theme-color" content="#ffffff" /> <title>RV</title>
+      <meta name="description" content="A blog on people, machines and learning"/>
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/terminal.css">
+      <link id="darkSheet" rel="stylesheet" href="css/dark.css">
+   </head>
+   <body>
+      <script src="js/header_top.js"></script>
+      <div class="container">
+         <h1>✍🏻 Articles</h1>
+         <!-- Tab links -->
+         <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'New')">New</button>
+            <button class="tablinks" onclick="openTab(event, 'Top')">Top</button>
+            <button class="tablinks" onclick="openTab(event, 'Guest')">Guest</button>
+         </div>
+         
+         <!-- Tab content -->
+         <div id="New" class="tabcontent">
+            <h3>New</h3>
+            <script src="js/articles_new.js"></script>
+         </div>
+         
+         <div id="Top" class="tabcontent">
+            <h3>Top</h3>
+            Under construction
+         </div>
+
+         <div id="Guest" class="tabcontent">
+            <h3>Guest</h3>
+            <ul style="margin-top: 5px;">
+               <li><a target="_blank" href="https://thenextweb.com/neural/2020/09/11/covid-19-made-your-data-set-worthless-now-what/">COVID-19 made your data set worthless. Now what?</a>
+               <span style="float:right"><i>TNW</i>, Sep 2020</span></li>
+               <li><a target="_blank" href="https://bit.ly/3eSxGtY">AI risks and deployment challenges</a>
+               <span style="float:right"><i>Codurance podcast</i>, Jul 2020</span></li>
+               <li><a target="_blank" href="https://www.saporedicina.com/english/from-xian-to-kunming-on-bicycle/">From Xi’an to Kunming on bicycle</a>
+               <span style="float:right"><i>Sapore Di Cina</i>, Oct 2016</span></li>
+            </ul>
+         </div>
+
+         <br>
+   </body>
+   <footer>
+      <p style="text-align: center; font-size: 12px;">
+         On-premise privacy compliant website analytics using <a href="http://matomo.com/" target="_blank">Matomo</a>. 
+      </br>For more info, visit the <a href="privacy.html">privacy policy and opt-out page</a>. </p>
+      <p style="text-align: center; font-size: 12px;">© Riccardo Volpato <script>document.write(new Date().getFullYear())</script></p>
+      <script src="js/main.js"></script>
+      <script>openTab(event, 'New');</script>
+   </footer>
+</html>
