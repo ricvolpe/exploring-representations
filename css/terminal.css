@@ -1,5 +1,5 @@
 :root {
-    --global-font-size: 22px;
+    --global-font-size: 20px;
     --global-line-height: 1.5625;
     --global-space: 12px;
     --font-stack: sans-serif;
@@ -122,6 +122,10 @@
     float: none;
     margin: 0;
     padding: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
   }
   
   blockquote,
@@ -905,9 +909,9 @@
   
     .terminal-menu ul {
       flex-direction: row;
-      justify-items: flex-end;
+      justify-items: center;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: center;
       margin-top: calc(var(--global-space) * 2);
     }
   

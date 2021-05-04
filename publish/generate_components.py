@@ -16,20 +16,6 @@ def generate_header(page_title):
    </head>
    """
 
-def generate_page_menu(page_title):
-    return f"""    <div class="container">
-        <h1>{page_title}</h1>
-        <div class="terminal-nav">
-           <nav class="terminal-menu">
-              <ul>
-                 <li><a href="../index.html">Home</a></li>
-                 <li></li><a id="ligthSwitch" onclick="switchLigth()">ligthSwitch</a></li>
-              </ul>
-           </nav>
-        </div>
-     </div>
-     """
-
 def generate_footer():
    return """   <footer>
       <p style="text-align: center; font-size: 12px;">© Riccardo Volpato <script>document.write(new Date().getFullYear())</script></p>
