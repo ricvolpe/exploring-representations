@@ -12,7 +12,7 @@ def tweet(tweet):
     api.update_status(tweet)
     print('Published on Twitter')
 
-def post_on_reddit(message, link, subs):
+def post_on_reddit(subs, title, message):
     import praw
     reddit = praw.Reddit(client_id=KEYS['reddit']['client_id'],
                         client_secret=KEYS['reddit']['client_secret'],
@@ -22,7 +22,7 @@ def post_on_reddit(message, link, subs):
 
     for subr in subs:
         subreddit = reddit.subreddit(subr)
-        subreddit.submit(title, url=link)
+        subreddit.submit(title, selftext=message)
 
 def shorten_url(url):
     header = {
@@ -42,7 +42,7 @@ def shorten_url(url):
 if __name__ == "__main__":
 
     link = 'https://www.scotthyoung.com/blog/2021/04/12/help-me-with-my-new-project/'
-    msg = 'Check out'
+
     post_on = {
         'twitter': False,
         'reddit': [], # insert subreddits list
@@ -50,6 +50,10 @@ if __name__ == "__main__":
 
     short_url = shorten_url(link)
     if post_on['twitter']:
-        tweet(msg + ' ' + short_url)
+        message = 
+        tweet(message + ' ' + short_url)
+    
     if len(post_on['reddit']) > 0:
-        post_on_reddit(post_on['reddit'], msg, link)
+        title = ''
+        message = 
+        post_on_reddit(post_on['reddit'], title, message)
