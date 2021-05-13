@@ -1,6 +1,10 @@
 document.write(`
 <table style="width:100%;">
 <tr>
+<td>- <a href="articles/2105-why_doing_something.html">Why doing something valuable is hard</a></td>
+<td>May 2021</td>
+</tr>
+<tr>
 <td>- <a href="articles/2105-the_essence_of.html">The essence of my being</a></td>
 <td>May 2021</td>
 </tr>

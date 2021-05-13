@@ -17,6 +17,7 @@ def parse_file(path):
     return title, content
 
 def generate_html(title, paragraphs):
+    title = title.split('/')[-1]
     filepath = "_".join(title.split(" ")[:3]).lower()
     today = datetime.today()
     with open(f'articles/{today.strftime("%y%m")}-{filepath}.html', 'w+') as fOut:
