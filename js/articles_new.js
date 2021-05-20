@@ -9,6 +9,10 @@ document.write(`
 <td>May 2021</td>
 </tr>
 <tr>
+<td>- <a href="articles/2105-anxiety_and_resilience-.html">Anxiety and resilience: a love story</a></td>
+<td>May 2021</td>
+</tr>
+<tr>
 <td>- <a href="articles/2011-time-sleep.html">time.sleep(∞)</a></td>
 <td>Nov 2020</td>
 </tr>
