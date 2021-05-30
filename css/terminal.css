@@ -1107,3 +1107,8 @@
   border: 1px solid #ccc;
   border-top: none;
 }
+
+.reversed_list { 
+  display: flex;
+  flex-direction: column-reverse;
+}
